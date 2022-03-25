@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
+  cursors: any;
   constructor(scene, x, y) {
     super(scene, x, y, 'spraycan');
 

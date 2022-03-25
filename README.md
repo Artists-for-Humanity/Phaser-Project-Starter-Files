@@ -1,4 +1,4 @@
-# "RFP Project"
+# "Game Design Project"
 
 This project is meant to improve your knowledge and understanding Javascript. In this project we will use a library called [Phaser.js](https://phaser.io/) to create our own Game. Phaser.js is a Javascript (js) game framework. A framework is a set of code that contains commonly used tools. The reason we use a framework is so that we can focus on writing the unique code for our game and not reinventing the wheel for generic aspects of our game.
 
