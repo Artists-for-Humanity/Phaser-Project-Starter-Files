@@ -15,7 +15,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-
+    console.log('This is Dolly Cooks')
     const gameWidth: number = this.game.config.width as number;
     const gameHeight: number = this.game.config.height as number;
     this.add.image(gameWidth / 2, gameHeight / 2, 'menu-scene-text');
