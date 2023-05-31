@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
 
-export default class GameScene extends Phaser.Scene {
+export default class LevelOne extends Phaser.Scene {
 
 
   constructor() {
     super({
-      key: 'GameScene',
+      key: 'LevelOne',
     });
   }
 
@@ -14,7 +14,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create() {
-    console.log('This is Level Cat')
+    console.log('This is Level One')
     const gameWidth: number = this.game.config.width as number;
     const gameHeight: number = this.game.config.height as number;
     this.add.image(gameWidth / 2, gameHeight / 2, 'LevelCat');

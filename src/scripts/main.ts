@@ -1,12 +1,13 @@
 import Phaser from 'phaser';
 import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
+import LevelOne from './Scenes/LevelOne';
 
 // Set configuration for phaser game instance
 const config = {
   type: Phaser.AUTO,
-  width: 960,
-  height: 720,
+  width: 970,
+  height: 750,
   backgroundColor: '#393a39',
 
   // Add physics, arcade, scene, and audio
@@ -19,7 +20,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, GameScene],
+  scene: [LevelOne, MenuScene, GameScene],
   audio: {
     disableWebAudio: true,
   },
