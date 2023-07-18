@@ -2,16 +2,14 @@ import Phaser from 'phaser';
 import WebFont from 'webfontloader';
 import { colors } from '../constants';
 
-export default class GameScene extends Phaser.Scene {
+export default class MenuScene extends Phaser.Scene {
   constructor() {
     super({ key: 'MenuScene' });
   }
 
   preload() {
-    this.load.image(
-      'home',
-      new URL('../../assets/home.png', import.meta.url).href
-    );
+    this.load.image('home', new URL('../../assets/home.png', import.meta.url).href);
+    this.load.image('Play', new URL('../../assets/Play.png', import.meta.url).href);
   }
 
   create() {
@@ -19,7 +17,7 @@ export default class GameScene extends Phaser.Scene {
     const gameWidth: number = this.game.config.width as number;
     const gameHeight: number = this.game.config.height as number;
     this.add.image(gameWidth / 2, gameHeight / 2, 'home');
-   
+    
 
     WebFont.load({
       custom: {
@@ -27,6 +25,12 @@ export default class GameScene extends Phaser.Scene {
       },
      
     });
+
+    var Play = this.add.image(485, 550, 'Play');
+   Play.setInteractive()
+
+    
+   Play.on('pointerup', () => {this.scene.start('GameScene');})
 
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('GameScene');

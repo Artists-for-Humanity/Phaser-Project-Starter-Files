@@ -2,6 +2,9 @@ import Phaser from 'phaser';
 import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
 import LevelOne from './Scenes/LevelOne';
+import LevelTwo from './Scenes/LevelTwo';
+import ArrozConLeche from './Scenes/ArrozConLeche';
+
 
 // Set configuration for phaser game instance
 const config = {
@@ -20,7 +23,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [LevelOne, MenuScene, GameScene],
+  scene: [MenuScene, GameScene, LevelOne, LevelTwo, ArrozConLeche],
   audio: {
     disableWebAudio: true,
   },
