@@ -7,6 +7,7 @@ export default class ArrozConLeche extends Phaser.Scene {
     super({
       key: 'ArrozConLeche',
     });
+
   }
 
   preload() {
@@ -27,10 +28,10 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.load.image('Water', new URL('../../assets/Water.png', import.meta.url).href);
     this.load.image('Cinnamon', new URL('../../assets/Cinnamon.png', import.meta.url).href);
     this.load.image('CondensedMilk', new URL('../../assets/CondensedMilk.png', import.meta.url).href);
-    this.load.image('Pot', new URL('../../assets/Pot.png', import.meta.url).href);
-    this.load.image('Bowl', new URL('../../assets/Bowl.png', import.meta.url).href);
-    this.load.image('Spoon', new URL('../../assets/Spoon.png', import.meta.url).href);
-    this.load.image('CuttingBoard', new URL('../../assets/CuttingBoard.png', import.meta.url).href);
+    this.load.image('Pot', new URL('../../assets/equip/Pot.png', import.meta.url).href);
+    this.load.image('Bowl', new URL('../../assets/equip/Bowl.png', import.meta.url).href);
+    this.load.image('WoodenSpoon', new URL('../../assets/equip/WoodenSpoon.png', import.meta.url).href);
+    this.load.image('CuttingBoard', new URL('../../assets/equip/CuttingBoard.png', import.meta.url).href);
   }
 
   create() {
@@ -45,28 +46,31 @@ export default class ArrozConLeche extends Phaser.Scene {
 
     HomeButton.on('pointerup', () => {this.scene.start('MenuScene');});
 
-    var RecipeBar = this.add.image(225, 50, 'RecipeBar')
-    RecipeBar.setInteractive()
+    var RecipeBar = this.add.image(225, 50, 'RecipeBar');
+    RecipeBar.setInteractive();
 
     RecipeBar.on('pointerup', () => {
       var RBarC = this.add.image(460, 210, 'RecipeOpened'); 
-      // var RArrow = this.add.image(650, 210, 'Arrow');
-      // RArrow.setInteractive();
-      var RBarO = this.add.image(225, 50, 'RecipeBarO')
-      RBarO.setInteractive()
+      var RArrow = this.add.image(650, 210, 'Arrow');
+      RArrow.setInteractive();
+      RArrow.on('pointerup', () => {
+        console.log("r arrow click");
+        //gimme more recipe
+      });
+      var RBarO = this.add.image(225, 50, 'RecipeBarO');
+      RBarO.setInteractive();
       RBarO.on('pointerup', () => {
         RBarC.setVisible(false);
-        // RArrow.setVisible(false);
-        RBarO.setVisible(false);
+        RArrow.setVisible(false);
+        RBarO.setVisible(false);     
       });
-  })
+    })
 
-
-
-    var IngredientsBar = this.add.image(525, 50, 'IngredientsBar')
-    IngredientsBar.setInteractive()
+    var IngredientsBar = this.add.image(525, 50, 'IngredientsBar');
+    IngredientsBar.setInteractive();
 
     IngredientsBar.on('pointerup', () => {
+      
       var IBarC = this.add.image(515, 205, 'I&EOpened'); 
       var Rice = this.add.image(255, 145, 'Rice');
       Rice.setInteractive();
@@ -76,6 +80,12 @@ export default class ArrozConLeche extends Phaser.Scene {
       Cinnamon.setInteractive();
       var CondensedMilk = this.add.image(250, 260, 'CondensedMilk');
       CondensedMilk.setInteractive();
+      var IArrow = this.add.image(700, 210, 'Arrow');
+      IArrow.setInteractive();
+      IArrow.on('pointerup', () => {
+        console.log("i arrow click");
+        //gimme more recipes
+      });
       var IBarO = this.add.image(525, 50, 'IngredientsBarO');
       IBarO.setInteractive();
       IBarO.on('pointerup', () => {
@@ -87,13 +97,14 @@ export default class ArrozConLeche extends Phaser.Scene {
         Water.setVisible(false); 
         Cinnamon.setVisible(false); 
         CondensedMilk.setVisible(false);
+        IArrow.setVisible(false);
       });
   })
 
 
 
-  var EquipmentBar = this.add.image(825, 50, 'EquipmentBar')
-  EquipmentBar.setInteractive()
+  var EquipmentBar = this.add.image(825, 50, 'EquipmentBar');
+  EquipmentBar.setInteractive();
 
   EquipmentBar.on('pointerup', () => {
     var EBarC = this.add.image(590, 210, 'I&EOpened'); 
@@ -101,18 +112,25 @@ export default class ArrozConLeche extends Phaser.Scene {
     Pot.setInteractive();
     var Bowl = this.add.image(458, 150, 'Bowl');
     Bowl.setInteractive();
-    var Spoon = this.add.image(585, 150, 'Spoon');
-    Spoon.setInteractive();
+    var WoodenSpoon = this.add.image(585, 150, 'WoodenSpoon');
+    WoodenSpoon.setInteractive();
     var CuttingBoard = this.add.image(338, 268, 'CuttingBoard');
     CuttingBoard.setInteractive();
+    var EArrow = this.add.image(775, 210, 'Arrow');
+      EArrow.setInteractive();
+      EArrow.on('pointerup', () => {
+        console.log("e arrow click");
+        //gimme more recipes
+      });
     var EBarO = this.add.image(825, 50, 'EquipmentBarO');
     EBarO.setInteractive();
     EBarO.on('pointerup', () => {
+      EArrow.setVisible(false);
       EBarC.setVisible(false); 
       EBarO.setVisible(false);
       Pot.setVisible(false);
       Bowl.setVisible(false);
-      Spoon.setVisible(false);
+      WoodenSpoon.setVisible(false);
       CuttingBoard.setVisible(false);
       });
   })
