@@ -20,6 +20,7 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.load.image('EquipmentBar', new URL('../../assets/EquipmentBar.png', import.meta.url).href);
     this.load.image('EquipmentBarO', new URL('../../assets/EquipmentBarO.png', import.meta.url).href);
     this.load.image('I&EOpened', new URL('../../assets/I&EOpened.png', import.meta.url).href);
+    this.load.image('Arrow', new URL('../../assets/Arrow.png', import.meta.url).href);
 
     //Assets
     this.load.image('Rice', new URL('../../assets/Rice.png', import.meta.url).href);
@@ -49,10 +50,13 @@ export default class ArrozConLeche extends Phaser.Scene {
 
     RecipeBar.on('pointerup', () => {
       var RBarC = this.add.image(460, 210, 'RecipeOpened'); 
+      // var RArrow = this.add.image(650, 210, 'Arrow');
+      // RArrow.setInteractive();
       var RBarO = this.add.image(225, 50, 'RecipeBarO')
       RBarO.setInteractive()
       RBarO.on('pointerup', () => {
         RBarC.setVisible(false);
+        // RArrow.setVisible(false);
         RBarO.setVisible(false);
       });
   })
@@ -75,6 +79,8 @@ export default class ArrozConLeche extends Phaser.Scene {
       var IBarO = this.add.image(525, 50, 'IngredientsBarO');
       IBarO.setInteractive();
       IBarO.on('pointerup', () => {
+         //arrow stuff -> previous assets set false -> next assets set true
+         console.log('wut')
         IBarC.setVisible(false); 
         IBarO.setVisible(false);
         Rice.setVisible(false); 
