@@ -300,16 +300,20 @@ export default class ArrozConLeche extends Phaser.Scene {
   cycleRecipe(num) {
     switch (num) {
       case 0:
-        this.recipe.setFrame('');
-        this.instructions.setFrame('');
+        console.log('image 1');
+        // this.recipe.setFrame('');
+        // this.instructions.setFrame('');
         break;
       case 1:
-        this.recipe.setFrame();
-        this.instructions.setFrame('');
+        console.log('image 2');
+
+        // this.recipe.setFrame();
+        // this.instructions.setFrame('');
         break;
       case 2:
-        this.recipe.setFrame('');
-        this.instructions.setFrame('');
+        console.log('image 3');
+        // this.recipe.setFrame('');
+        // this.instructions.setFrame('');
         break;
     }
   }
