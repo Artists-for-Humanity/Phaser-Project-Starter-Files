@@ -138,7 +138,6 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.recipeIndex = 0;
     //ingredients
     this.ingredientsBar = this.add.image(525, 50, 'IngredientsBar');
-    
     this.iBarC = this.add.image(515, 205, 'I&EOpened');
     this.iBarC.setVisible(false);
     this.iBarO = this.add.image(525, 50, 'IngredientsBarO');
