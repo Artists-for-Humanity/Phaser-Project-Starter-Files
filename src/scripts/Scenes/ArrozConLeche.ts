@@ -138,14 +138,15 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.recipeIndex = 0;
     //ingredients
     this.ingredientsBar = this.add.image(525, 50, 'IngredientsBar');
-    this.iDownArrow = this.add.image(700, 210, 'down');
-    this.iDownArrow.setVisible(false);
-    this.iUpArrow = this.add.image(700, 210, 'up');
-    this.iUpArrow.setVisible(false);
+    
     this.iBarC = this.add.image(515, 205, 'I&EOpened');
     this.iBarC.setVisible(false);
     this.iBarO = this.add.image(525, 50, 'IngredientsBarO');
     this.iBarO.setVisible(false);
+    this.iDownArrow = this.add.image(675, 210, 'down');
+    this.iDownArrow.setVisible(false);
+    this.iUpArrow = this.add.image(750, 210, 'up');
+    this.iUpArrow.setVisible(false);
     this.rice = this.add.image(255, 145, 'Rice');
     this.rice.setVisible(false);
     this.water = this.add.image(388, 150, 'Water');
@@ -168,9 +169,9 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.woodenSpoon.setVisible(false);
     this.cuttingBoard = this.add.image(338, 268, 'CuttingBoard');
     this.cuttingBoard.setVisible(false);
-    this.eUpArrow = this.add.image(775, 210, 'up');
+    this.eUpArrow = this.add.image(800, 210, 'up');
     this.eUpArrow.setVisible(false);
-    this.eDownArrow = this.add.image(775, 210, 'down');
+    this.eDownArrow = this.add.image(725, 210, 'down');
     this.eDownArrow.setVisible(false);
     console.log('This is Arroz Con Leche');
     this.homeButton.setInteractive();
