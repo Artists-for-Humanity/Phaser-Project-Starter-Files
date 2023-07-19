@@ -156,6 +156,8 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.condensedMilk.setVisible(false);
     //equip
     this.equipmentBar = this.add.image(825, 50, 'EquipmentBar');
+    this.eBarO = this.add.image(825, 50, 'EquipmentBarO');
+    this.eBarO.setVisible(false);
     this.eBarC = this.add.image(590, 210, 'I&EOpened');
     this.eBarC.setVisible(false);
     this.pot = this.add.image(331, 150, 'Pot');
@@ -170,8 +172,6 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.eUpArrow.setVisible(false);
     this.eDownArrow = this.add.image(775, 210, 'down');
     this.eDownArrow.setVisible(false);
-    this.eBarO = this.add.image(825, 50, 'EquipmentBarO');
-    this.eBarO.setVisible(false);
     console.log('This is Arroz Con Leche');
     this.homeButton.setInteractive();
     this.homeButton.on('pointerup', () => {
@@ -191,7 +191,7 @@ export default class ArrozConLeche extends Phaser.Scene {
           this.recipeIndex++;
           this.cycleRecipe(this.recipeIndex);
         }
-        console.log(this.recipeIndex);
+        // console.log('ayo wtf');
         //gimme more recipe
       });
       this.rUpArrow.setVisible(true);
@@ -204,7 +204,7 @@ export default class ArrozConLeche extends Phaser.Scene {
           this.cycleRecipe(this.recipeIndex);
         }
 
-        console.log(this.recipeIndex);
+        // console.log(this.recipeIndex);
         //gimme more recipe
       });
       this.rBarO.setVisible(true);
