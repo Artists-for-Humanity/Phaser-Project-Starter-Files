@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-
 export default class ArrozConLeche extends Phaser.Scene {
   homeButton: any;
   recipeBar: any;
@@ -117,6 +116,8 @@ export default class ArrozConLeche extends Phaser.Scene {
     console.log('all the goddamn pictures should be here >:(');
   }
   create() {
+    
+
     const gameWidth: number = this.game.config.width as number;
     const gameHeight: number = this.game.config.height as number;
     this.homeButton = this.add.image(50, 61, 'HomeButton');
@@ -177,6 +178,7 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.homeButton.on('pointerup', () => {
       this.scene.start('MenuScene');
     });
+     this.scene.run('Stove');
     //recipe
     this.recipeBar.setInteractive();
     this.recipeBar.on('pointerup', () => {

@@ -4,6 +4,8 @@ import GameScene from './Scenes/GameScene';
 import LevelOne from './Scenes/LevelOne';
 import LevelTwo from './Scenes/LevelTwo';
 import ArrozConLeche from './Scenes/ArrozConLeche';
+import Stove from './Scenes/Stove';
+
 
 
 // Set configuration for phaser game instance
@@ -23,7 +25,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, GameScene, LevelOne, LevelTwo, ArrozConLeche],
+  scene: [MenuScene, GameScene, LevelOne, LevelTwo, ArrozConLeche, Stove],
   audio: {
     disableWebAudio: true,
   },
