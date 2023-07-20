@@ -203,7 +203,6 @@ export default class ArrozConLeche extends Phaser.Scene {
           this.recipeIndex--;
           this.cycleRecipe(this.recipeIndex);
         }
-
         // console.log(this.recipeIndex);
         //gimme more recipe
       });
