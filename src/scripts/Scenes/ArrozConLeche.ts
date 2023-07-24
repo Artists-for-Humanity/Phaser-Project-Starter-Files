@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Stove from './Stove';
 export default class ArrozConLeche extends Phaser.Scene {
   homeButton: any;
   recipeBar: any;
@@ -116,8 +117,6 @@ export default class ArrozConLeche extends Phaser.Scene {
     console.log('all the goddamn pictures should be here >:(');
   }
   create() {
-    
-
     const gameWidth: number = this.game.config.width as number;
     const gameHeight: number = this.game.config.height as number;
     this.homeButton = this.add.image(50, 61, 'HomeButton');
@@ -176,9 +175,10 @@ export default class ArrozConLeche extends Phaser.Scene {
     console.log('This is Arroz Con Leche');
     this.homeButton.setInteractive();
     this.homeButton.on('pointerup', () => {
+      this.scene.stop('Stove');
       this.scene.start('MenuScene');
     });
-     this.scene.run('Stove');
+    this.scene.run('Stove');
     //recipe
     this.recipeBar.setInteractive();
     this.recipeBar.on('pointerup', () => {
@@ -271,6 +271,22 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.cuttingBoard.setInteractive();
       this.eUpArrow.setVisible(true);
       this.eUpArrow.setInteractive();
+      //start
+      this.pot.once('pointerdown', (pointer) => {
+        let p = this.physics.add.sprite(pointer.x, pointer.y, 'Pot');
+        this.eBarToggle();
+        // p.add.collider(p, Stove.stoveArr[0],()=>{console.log("you suck");}, null, this);
+        p.setInteractive();
+        p.on('pointerdown', () => {
+          p.on('pointermove', (pointer) => {
+            p.x = pointer.x;
+            p.y = pointer.y;
+          });
+          p.on('pointerup', () => {
+            p.off('pointermove');
+          });
+        });
+      });
       this.eUpArrow.on('pointerup', () => {
         console.log('e arrow click');
         //gimme more recipes
@@ -283,20 +299,23 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.eBarO.setVisible(true);
       this.eBarO.setInteractive();
       this.eBarO.on('pointerup', () => {
-        this.eUpArrow.setVisible(false);
-        this.eDownArrow.setVisible(false);
-        this.eBarC.setVisible(false);
-        this.eBarO.setVisible(false);
-        this.pot.setVisible(false);
-        this.bowl.setVisible(false);
-        this.woodenSpoon.setVisible(false);
-        this.cuttingBoard.setVisible(false);
+        this.eBarToggle();
       });
     });
     this.input.keyboard.on('keydown-SPACE', () => {
       this.scene.start('MenuScene');
     });
     this.add.image(gameWidth / 2, gameHeight / 2, 'Background').setDepth(-1);
+  }
+  eBarToggle() {
+    this.eUpArrow.setVisible(false);
+    this.eDownArrow.setVisible(false);
+    this.eBarC.setVisible(false);
+    this.eBarO.setVisible(false);
+    this.pot.setVisible(false);
+    this.bowl.setVisible(false);
+    this.woodenSpoon.setVisible(false);
+    this.cuttingBoard.setVisible(false);
   }
   cycleRecipe(num) {
     switch (num) {
