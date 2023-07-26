@@ -278,15 +278,15 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.pot.once('pointerdown', (pointer) => {
         // eslint-disable-next-line prefer-const
         let p = this.physics.add.sprite(pointer.x, pointer.y, 'Pot');
-        this.physics.add.collider(
-          p,
-          s.getStoveArr(),
-          () => {
-            console.log('yipee');
-          },
-          undefined,
-          this
-        );
+        // this.physics.add.collider(
+        //   p,
+        //   s.getStoveArr(),
+        //   () => {
+        //     console.log('yipee');
+        //   },
+        //   undefined,
+        //   this
+        // );
         this.eBarToggle();
         // p.add.collider(p, Stove.stoveArr[0],()=>{console.log("you suck");}, null, this);
         p.setInteractive();
