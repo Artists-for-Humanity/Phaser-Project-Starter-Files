@@ -25,7 +25,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, GameScene, LevelOne, LevelTwo, ArrozConLeche, Stove],
+  scene: [MenuScene, GameScene, LevelOne, LevelTwo, ArrozConLeche],
   audio: {
     disableWebAudio: true,
   },

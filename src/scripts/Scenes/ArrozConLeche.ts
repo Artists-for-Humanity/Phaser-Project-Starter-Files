@@ -30,6 +30,10 @@ export default class ArrozConLeche extends Phaser.Scene {
   public eUpArrow: any;
   public eDownArrow: any;
   public eBarO: any;
+  //stove
+  stoveArr: any;
+  knobArr: any;
+  count: number;
   constructor() {
     console.log('bruh');
     super({
@@ -65,6 +69,10 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.eUpArrow;
     this.eDownArrow;
     this.eBarO;
+    //stove
+    this.stoveArr;
+    this.knobArr;
+    this.count = -1;
   }
   preload() {
     console.log('preload ACL start');
@@ -116,6 +124,13 @@ export default class ArrozConLeche extends Phaser.Scene {
       'ACL_Instructions',
       new URL('../../assets/recipes/ACL_Instructions.png', import.meta.url).href
     );
+    //stove
+    this.load.image('burner', new URL('../../assets/stove/burner.png', import.meta.url).href);
+    this.load.image('burnerOn', new URL('../../assets/stove/burnerOn.png', import.meta.url).href);
+    this.load.image('knob', new URL('../../assets/stove/knob.png', import.meta.url).href);
+    this.load.image('knobLow', new URL('../../assets/stove/knobLow.png', import.meta.url).href);
+    this.load.image('knobMed', new URL('../../assets/stove/knobMed.png', import.meta.url).href);
+    this.load.image('knobHigh', new URL('../../assets/stove/knobHigh.png', import.meta.url).href);
     console.log('preload ACL end');
   }
   create() {
@@ -178,10 +193,71 @@ export default class ArrozConLeche extends Phaser.Scene {
     console.log('This is Arroz Con Leche');
     this.homeButton.setInteractive();
     this.homeButton.on('pointerup', () => {
-      this.scene.stop('Stove');
+      // this.scene.stop('Stove');
       this.scene.start('MenuScene');
     });
-    this.scene.run('Stove');
+    this.knobArr = ['', '', '', ''];
+    for (let i = 0; i < 4; i++) {
+      //make knobs bigger later
+      this.knobArr[i] = this.add.image(90, 685, 'knob');
+      this.knobArr[i].setInteractive();
+      this.knobArr[i].on('pointerup', () => {
+        this.toggleBurner(i);
+      });
+      switch (i) {
+        case 1:
+          this.knobArr[i].x = 165;
+          break;
+        case 2:
+          this.knobArr[i].x = 240;
+          break;
+        case 3:
+          this.knobArr[i].x = 315;
+          break;
+      }
+    }
+    //represents the four burners
+    this.stoveArr = ['', '', '', ''];
+    for (let i = 0; i < 4; i++) {
+      switch (i) {
+        case 0:
+          this.stoveArr[i] = {
+            burner: this.add.sprite(140, 625, 'burner'),
+            contains: '',
+            isOn: false,
+          };
+          break;
+        case 1:
+          this.stoveArr[i] = {
+            burner: this.add.sprite(140, 525, 'burner'),
+            contains: '',
+            isOn: false,
+          };
+          break;
+        case 2:
+          this.stoveArr[i] = {
+            burner: this.add.sprite(260, 525, 'burner'),
+            contains: '',
+            isOn: false,
+          };
+          break;
+        case 3:
+          this.stoveArr[i] = {
+            burner: this.add.sprite(260, 625, 'burner'),
+            contains: '',
+            isOn: false,
+          };
+          break;
+      }
+    }
+    // let test = [
+    //   this.stoveArr[0].burner,
+    //   this.stoveArr[1].burner,
+    //   this.stoveArr[2].burner,
+    //   this.stoveArr[3].burner,
+    // ];
+
+    // this.scene.run('Stove');
     //recipe
     this.recipeBar.setInteractive();
     this.recipeBar.on('pointerup', () => {
@@ -274,16 +350,17 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.cuttingBoard.setInteractive();
       this.eUpArrow.setVisible(true);
       this.eUpArrow.setInteractive();
+      //stove
+
       //start
       this.pot.once('pointerdown', (pointer) => {
         // eslint-disable-next-line prefer-const
-        let p = this.physics.add.sprite(pointer.x, pointer.y, 'Pot');
-        // this.physics.add.collider(
+        let p = this.physics.add.image(pointer.x, pointer.y, 'Pot');
+        // console.log(this.stoveArr);
+        // this.physics.add.overlap(
         //   p,
-        //   s.getStoveArr(),
-        //   () => {
-        //     console.log('yipee');
-        //   },
+        //   test,
+        //   this.onColl(),
         //   undefined,
         //   this
         // );
@@ -299,6 +376,7 @@ export default class ArrozConLeche extends Phaser.Scene {
             p.off('pointermove');
           });
         });
+
         //for now its a little wonky until later
       });
       this.eUpArrow.on('pointerup', () => {
@@ -351,6 +429,31 @@ export default class ArrozConLeche extends Phaser.Scene {
         // this.instructions.setFrame('');
         break;
     }
+  }
+  toggleBurner(i) {
+    this.count++;
+    switch (this.count) {
+      case 0:
+        this.stoveArr[i].burner.setTexture('burner');
+        this.stoveArr[i].isOn = false;
+        this.knobArr[i].setTexture('knob');
+        break;
+      case 1:
+        this.knobArr[i].setTexture('knobLow');
+        this.stoveArr[i].burner.setTexture('burnerOn');
+        this.stoveArr[i].isOn = true;
+        break;
+      case 2:
+        this.knobArr[i].setTexture('knobMed');
+        break;
+      case 3:
+        this.knobArr[i].setTexture('knobHigh');
+        this.count = -1;
+        break;
+    }
+  }
+  onColl() {
+    console.log('LDIFBLBIHG');
   }
   update() {
     if (this.rBarC.visible === true) {
