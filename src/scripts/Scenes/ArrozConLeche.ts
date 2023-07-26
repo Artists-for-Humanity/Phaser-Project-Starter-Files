@@ -1,33 +1,35 @@
 import Phaser from 'phaser';
-import Stove from './Stove';
+// import Stove from "./Stove";
+// const s = new Stove();
+// console.log(s.getStoveArr());
 export default class ArrozConLeche extends Phaser.Scene {
-  homeButton: any;
-  recipeBar: any;
-  rBarC: any;
-  rBarO: any;
-  rDownArrow: any;
-  rUpArrow: any;
-  recipe: any;
-  instructions: any;
-  iUpArrow: any;
-  iDownArrow: any;
-  ingredientsBar: any;
-  iBarC: any;
-  iBarO: any;
-  rice: any;
-  water: any;
-  cinnamon: any;
-  condensedMilk: any;
-  recipeIndex: number;
-  equipmentBar: any;
-  eBarC: any;
-  pot: any;
-  bowl: any;
-  woodenSpoon: any;
-  cuttingBoard: any;
-  eUpArrow: any;
-  eDownArrow: any;
-  eBarO: any;
+  public homeButton: any;
+  public recipeBar: any;
+  public rBarC: any;
+  public rBarO: any;
+  public rDownArrow: any;
+  public rUpArrow: any;
+  public recipe: any;
+  public instructions: any;
+  public iUpArrow: any;
+  public iDownArrow: any;
+  public ingredientsBar: any;
+  public iBarC: any;
+  public iBarO: any;
+  public rice: any;
+  public water: any;
+  public cinnamon: any;
+  public condensedMilk: any;
+  public recipeIndex: number;
+  public equipmentBar: any;
+  public eBarC: any;
+  public pot: any;
+  public bowl: any;
+  public woodenSpoon: any;
+  public cuttingBoard: any;
+  public eUpArrow: any;
+  public eDownArrow: any;
+  public eBarO: any;
   constructor() {
     console.log('bruh');
     super({
@@ -65,7 +67,7 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.eBarO;
   }
   preload() {
-    console.log('wtf');
+    console.log('preload ACL start');
     this.load.image('Background', new URL('../../assets/Background.png', import.meta.url).href);
     this.load.image('HomeButton', new URL('../../assets/HomeButton.png', import.meta.url).href);
     this.load.image('RecipeBar', new URL('../../assets/RecipeBar.png', import.meta.url).href);
@@ -114,9 +116,10 @@ export default class ArrozConLeche extends Phaser.Scene {
       'ACL_Instructions',
       new URL('../../assets/recipes/ACL_Instructions.png', import.meta.url).href
     );
-    console.log('all the goddamn pictures should be here >:(');
+    console.log('preload ACL end');
   }
   create() {
+    console.log('create ACL start');
     const gameWidth: number = this.game.config.width as number;
     const gameHeight: number = this.game.config.height as number;
     this.homeButton = this.add.image(50, 61, 'HomeButton');
@@ -273,7 +276,17 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.eUpArrow.setInteractive();
       //start
       this.pot.once('pointerdown', (pointer) => {
+        // eslint-disable-next-line prefer-const
         let p = this.physics.add.sprite(pointer.x, pointer.y, 'Pot');
+        this.physics.add.collider(
+          p,
+          s.getStoveArr(),
+          () => {
+            console.log('yipee');
+          },
+          undefined,
+          this
+        );
         this.eBarToggle();
         // p.add.collider(p, Stove.stoveArr[0],()=>{console.log("you suck");}, null, this);
         p.setInteractive();
@@ -286,6 +299,7 @@ export default class ArrozConLeche extends Phaser.Scene {
             p.off('pointermove');
           });
         });
+        //for now its a little wonky until later
       });
       this.eUpArrow.on('pointerup', () => {
         console.log('e arrow click');
@@ -306,6 +320,7 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.scene.start('MenuScene');
     });
     this.add.image(gameWidth / 2, gameHeight / 2, 'Background').setDepth(-1);
+    console.log('create ACL end');
   }
   eBarToggle() {
     this.eUpArrow.setVisible(false);
