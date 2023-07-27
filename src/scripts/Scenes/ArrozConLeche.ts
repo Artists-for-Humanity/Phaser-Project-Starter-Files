@@ -351,6 +351,7 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.eUpArrow.setVisible(true);
       this.eUpArrow.setInteractive();
       //pot interact
+      // eslint-disable-next-line prefer-const
       let p = this.physics.add.group({
         key: "Pot",
         repeat: 0,
@@ -447,26 +448,6 @@ export default class ArrozConLeche extends Phaser.Scene {
       }
     }
   }
-  cycleRecipe(num) {
-    switch (num) {
-      case 0:
-        console.log("image 1");
-        // this.recipe.setFrame('');
-        // this.instructions.setFrame('');
-        break;
-      case 1:
-        console.log("image 2");
-
-        // this.recipe.setFrame();
-        // this.instructions.setFrame('');
-        break;
-      case 2:
-        console.log("image 3");
-        // this.recipe.setFrame('');
-        // this.instructions.setFrame('');
-        break;
-    }
-  }
   toggleBurner(i) {
     this.count++;
     switch (this.count) {
@@ -486,6 +467,26 @@ export default class ArrozConLeche extends Phaser.Scene {
       case 3:
         this.knobArr[i].setTexture("knobHigh");
         this.count = -1;
+        break;
+    }
+  }
+  cycleRecipe(num) {
+    switch (num) {
+      case 0:
+        console.log("image 1");
+        // this.recipe.setFrame('');
+        // this.instructions.setFrame('');
+        break;
+      case 1:
+        console.log("image 2");
+
+        // this.recipe.setFrame();
+        // this.instructions.setFrame('');
+        break;
+      case 2:
+        console.log("image 3");
+        // this.recipe.setFrame('');
+        // this.instructions.setFrame('');
         break;
     }
   }
