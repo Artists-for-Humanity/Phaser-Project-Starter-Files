@@ -13,13 +13,14 @@ export default class ArrozConLeche extends Phaser.Scene {
   iBarC: any;
   rice: any;
   water: any;
+  w: any;
   cinnamon: any;
   condensedMilk: any;
   recipeIndex: number;
   equipmentBar: any;
   eBarC: any;
   pot: any;
-  // p: any;
+  p: any;
   bowl: any;
   woodenSpoon: any;
   cuttingBoard: any;
@@ -49,13 +50,14 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.iBarC;
     this.rice;
     this.water;
+    this.w;
     this.cinnamon;
     this.condensedMilk;
     //equip
     this.equipmentBar;
     this.eBarC;
     this.pot;
-    // this.p;
+    this.p;
     this.bowl;
     this.woodenSpoon;
     this.cuttingBoard;
@@ -216,6 +218,16 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.rice.setVisible(false);
     this.water = this.add.image(388, 150, "Water");
     this.water.setVisible(false);
+    this.w = this.physics.add.group({
+      key: "Water",
+      repeat: 0,
+      // setXY: {
+      //    x: pointer.x,
+      //    y: pointer.y,
+      //    stepX: 100
+      //   }
+    });
+    this.w.getChildren()[0].destroy();
     this.cinnamon = this.add.image(515, 145, "Cinnamon");
     this.cinnamon.setVisible(false);
     this.condensedMilk = this.add.image(250, 260, "CondensedMilk");
@@ -226,6 +238,16 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.eBarC.setVisible(false);
     this.pot = this.add.image(331, 150, "Pot");
     this.pot.setVisible(false);
+    this.p = this.physics.add.group({
+      key: "Pot",
+      repeat: 0,
+      // setXY: {
+      //    x: pointer.x,
+      //    y: pointer.y,
+      //    stepX: 100
+      //   }
+    });
+    this.p.getChildren()[0].destroy();
     this.bowl = this.add.image(458, 150, "Bowl");
     this.bowl.setVisible(false);
     this.woodenSpoon = this.add.image(585, 150, "WoodenSpoon");
@@ -325,6 +347,25 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.iDownArrow.on("pointerup", () => {
         //put stuff here
       });
+      this.water.on("pointerdown", (pointer) => {
+        this.w.create(pointer.x, pointer.y, "Water");
+        this.w.getChildren().forEach((Water) => {
+          this.physics.add.overlap(Water, this.p, () => {
+            //put something here
+          });
+          Water.setInteractive();
+          Water.on("pointerdown", () => {
+            Water.on("pointermove", (pointer) => {
+              Water.x = pointer.x;
+              Water.y = pointer.y;
+            });
+            Water.on("pointerup", () => {
+              Water.off("pointermove");
+            });
+          });
+        });
+        //for now its a little wonky until later
+      });
     } else {
       this.ingredientsBar.setTexture("IngredientsBar");
       this.iBarC.setVisible(false);
@@ -352,19 +393,9 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.eUpArrow.setInteractive();
       //pot interact
       // eslint-disable-next-line prefer-const
-      let p = this.physics.add.group({
-        key: "Pot",
-        repeat: 0,
-        // setXY: {
-        //    x: pointer.x,
-        //    y: pointer.y,
-        //    stepX: 100
-        //   }
-      });
-      p.getChildren()[0].setVisible(false);
       this.pot.on("pointerdown", (pointer) => {
-        p.create(pointer.x, pointer.y, "Pot");
-        p.getChildren().forEach((Pot) => {
+        this.p.create(pointer.x, pointer.y, "Pot");
+        this.p.getChildren().forEach((Pot) => {
           this.physics.add.overlap(Pot, this.stoveArr, () => {
             this.onColl();
           });
