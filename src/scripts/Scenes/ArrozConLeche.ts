@@ -1,5 +1,6 @@
+/* eslint-disable prettier/prettier */
 import Phaser from 'phaser';
-// import Stove from "./Stove";
+// import Stove from './Stove';
 // const s = new Stove();
 // console.log(s.getStoveArr());
 export default class ArrozConLeche extends Phaser.Scene {
@@ -76,38 +77,80 @@ export default class ArrozConLeche extends Phaser.Scene {
   }
   preload() {
     console.log('preload ACL start');
-    this.load.image('Background', new URL('../../assets/Background.png', import.meta.url).href);
-    this.load.image('HomeButton', new URL('../../assets/HomeButton.png', import.meta.url).href);
-    this.load.image('RecipeBar', new URL('../../assets/RecipeBar.png', import.meta.url).href);
-    this.load.image('RecipeBarO', new URL('../../assets/RecipeBarO.png', import.meta.url).href);
-    this.load.image('RecipeOpened', new URL('../../assets/RecipeOpened.png', import.meta.url).href);
+    this.load.image(
+      'Background',
+      new URL('../../assets/Background.png', import.meta.url).href
+    );
+    this.load.image(
+      'HomeButton',
+      new URL('../../assets/buttons/HomeButton.png', import.meta.url).href
+    );
+    this.load.image(
+      'RecipeBar',
+      new URL('../../assets/buttons/RecipeBar.png', import.meta.url).href
+    );
+    this.load.image(
+      'RecipeBarO',
+      new URL('../../assets/buttons/RecipeBarO.png', import.meta.url).href
+    );
+    this.load.image(
+      'RecipeOpened',
+      new URL('../../assets/RecipeOpened.png', import.meta.url).href
+    );
     this.load.image(
       'IngredientsBar',
-      new URL('../../assets/IngredientsBar.png', import.meta.url).href
+      new URL('../../assets/buttons/IngredientsBar.png', import.meta.url).href
     );
     this.load.image(
       'IngredientsBarO',
-      new URL('../../assets/IngredientsBarO.png', import.meta.url).href
+      new URL('../../assets/buttons/IngredientsBarO.png', import.meta.url).href
     );
-    this.load.image('EquipmentBar', new URL('../../assets/EquipmentBar.png', import.meta.url).href);
+    this.load.image(
+      'EquipmentBar',
+      new URL('../../assets/buttons/EquipmentBar.png', import.meta.url).href
+    );
     this.load.image(
       'EquipmentBarO',
-      new URL('../../assets/EquipmentBarO.png', import.meta.url).href
+      new URL('../../assets/buttons/EquipmentBarO.png', import.meta.url).href
     );
-    this.load.image('I&EOpened', new URL('../../assets/I&EOpened.png', import.meta.url).href);
-    this.load.image('down', new URL('../../assets/DownArrow.png', import.meta.url).href);
-    this.load.image('up', new URL('../../assets/UpArrow.png', import.meta.url).href);
+    this.load.image(
+      'I&EOpened',
+      new URL('../../assets/I&EOpened.png', import.meta.url).href
+    );
+    this.load.image(
+      'down',
+      new URL('../../assets/buttons/DownArrow.png', import.meta.url).href
+    );
+    this.load.image(
+      'up',
+      new URL('../../assets/buttons/UpArrow.png', import.meta.url).href
+    );
     //ingredients
-    this.load.image('Rice', new URL('../../assets/ingred/Rice.png', import.meta.url).href);
-    this.load.image('Water', new URL('../../assets/ingred/Water.png', import.meta.url).href);
-    this.load.image('Cinnamon', new URL('../../assets/ingred/Cinnamon.png', import.meta.url).href);
+    this.load.image(
+      'Rice',
+      new URL('../../assets/ingred/Rice.png', import.meta.url).href
+    );
+    this.load.image(
+      'Water',
+      new URL('../../assets/ingred/Water.png', import.meta.url).href
+    );
+    this.load.image(
+      'Cinnamon',
+      new URL('../../assets/ingred/Cinnamon.png', import.meta.url).href
+    );
     this.load.image(
       'CondensedMilk',
       new URL('../../assets/ingred/CondensedMilk.png', import.meta.url).href
     );
-    this.load.image('Pot', new URL('../../assets/equip/Pot.png', import.meta.url).href);
+    this.load.image(
+      'Pot',
+      new URL('../../assets/equip/Pot.png', import.meta.url).href
+    );
     //equip
-    this.load.image('Bowl', new URL('../../assets/equip/Bowl.png', import.meta.url).href);
+    this.load.image(
+      'Bowl',
+      new URL('../../assets/equip/Bowl.png', import.meta.url).href
+    );
     this.load.image(
       'WoodenSpoon',
       new URL('../../assets/equip/WoodenSpoon.png', import.meta.url).href
@@ -125,12 +168,30 @@ export default class ArrozConLeche extends Phaser.Scene {
       new URL('../../assets/recipes/ACL_Instructions.png', import.meta.url).href
     );
     //stove
-    this.load.image('burner', new URL('../../assets/stove/burner.png', import.meta.url).href);
-    this.load.image('burnerOn', new URL('../../assets/stove/burnerOn.png', import.meta.url).href);
-    this.load.image('knob', new URL('../../assets/stove/knob.png', import.meta.url).href);
-    this.load.image('knobLow', new URL('../../assets/stove/knobLow.png', import.meta.url).href);
-    this.load.image('knobMed', new URL('../../assets/stove/knobMed.png', import.meta.url).href);
-    this.load.image('knobHigh', new URL('../../assets/stove/knobHigh.png', import.meta.url).href);
+    this.load.image(
+      'burner',
+      new URL('../../assets/stove/burner.png', import.meta.url).href
+    );
+    this.load.image(
+      'burnerOn',
+      new URL('../../assets/stove/burnerOn.png', import.meta.url).href
+    );
+    this.load.image(
+      'knob',
+      new URL('../../assets/stove/knob.png', import.meta.url).href
+    );
+    this.load.image(
+      'knobLow',
+      new URL('../../assets/stove/knobLow.png', import.meta.url).href
+    );
+    this.load.image(
+      'knobMed',
+      new URL('../../assets/stove/knobMed.png', import.meta.url).href
+    );
+    this.load.image(
+      'knobHigh',
+      new URL('../../assets/stove/knobHigh.png', import.meta.url).href
+    );
     console.log('preload ACL end');
   }
   create() {
@@ -140,7 +201,6 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.homeButton = this.add.image(50, 61, 'HomeButton');
     //recipe
     this.recipeBar = this.add.image(225, 50, 'RecipeBar');
-    console.log(this.recipeBar);
     this.rBarC = this.add.image(460, 210, 'RecipeOpened');
     this.rBarC.setVisible(false);
     this.rBarO = this.add.image(225, 50, 'RecipeBarO');
@@ -280,7 +340,9 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.rUpArrow.setInteractive();
       this.rUpArrow.on('pointerup', () => {
         if (this.recipeIndex > 0) {
-          this.rDownArrow.visible === false ? this.rDownArrow.setVisible(true) : '';
+          this.rDownArrow.visible === false
+            ? this.rDownArrow.setVisible(true)
+            : '';
           this.recipeIndex--;
           this.cycleRecipe(this.recipeIndex);
         }
@@ -313,7 +375,7 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.iUpArrow.setVisible(true);
       this.iUpArrow.setInteractive();
       this.iUpArrow.on('pointerup', () => {
-        console.log('i arrow click');
+        console.log('i up arrow click');
         //gimme more recipes
       });
       this.iDownArrow.setVisible(true);
@@ -325,7 +387,6 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.iBarO.setInteractive();
       this.iBarO.on('pointerup', () => {
         //arrow stuff -> previous assets set false -> next assets set true
-        console.log('wut');
         this.iBarC.setVisible(false);
         this.iBarO.setVisible(false);
         this.rice.setVisible(false);
@@ -365,7 +426,7 @@ export default class ArrozConLeche extends Phaser.Scene {
         //   this
         // );
         this.eBarToggle();
-        // p.add.collider(p, Stove.stoveArr[0],()=>{console.log("you suck");}, null, this);
+        // p.add.collider(p, Stove.stoveArr[0],()=>{console.log('you suck');}, null, this);
         p.setInteractive();
         p.on('pointerdown', () => {
           p.on('pointermove', (pointer) => {

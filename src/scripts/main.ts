@@ -1,10 +1,10 @@
+/* eslint-disable prettier/prettier */
 import Phaser from 'phaser';
 import MenuScene from './Scenes/MenuScene';
 import GameScene from './Scenes/GameScene';
 import LevelOne from './Scenes/LevelOne';
 import LevelTwo from './Scenes/LevelTwo';
 import ArrozConLeche from './Scenes/ArrozConLeche';
-import Stove from './Scenes/Stove';
 
 
 

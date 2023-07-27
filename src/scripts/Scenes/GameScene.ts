@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Phaser from 'phaser';
 
 export default class GameScene extends Phaser.Scene {
@@ -8,9 +9,9 @@ export default class GameScene extends Phaser.Scene {
   }
   preload() {
     this.load.image('LevelCat', new URL('../../assets/LevelCat.png', import.meta.url).href);
-    this.load.image('Levelso', new URL('../../assets/Levelso.png', import.meta.url).href);
-    this.load.image('RightA', new URL('../../assets/RightA.png', import.meta.url).href);
-    this.load.image('LeftA', new URL('../../assets/LeftA.png', import.meta.url).href);
+    this.load.image('Levelso', new URL('../../assets/levels/Levelso.png', import.meta.url).href);
+    this.load.image('RightA', new URL('../../assets/buttons/RightA.png', import.meta.url).href);
+    this.load.image('LeftA', new URL('../../assets/buttons/LeftA.png', import.meta.url).href);
   }
   create() {
     console.log('This is Level Cat 00');

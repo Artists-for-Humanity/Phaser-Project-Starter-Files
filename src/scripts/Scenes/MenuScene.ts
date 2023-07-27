@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Phaser from 'phaser';
 import WebFont from 'webfontloader';
 import { colors } from '../constants';
@@ -9,7 +10,7 @@ export default class MenuScene extends Phaser.Scene {
 
   preload() {
     this.load.image('home', new URL('../../assets/home.png', import.meta.url).href);
-    this.load.image('Play', new URL('../../assets/Play.png', import.meta.url).href);
+    this.load.image('Play', new URL('../../assets/buttons/Play.png', import.meta.url).href);
   }
 
   create() {

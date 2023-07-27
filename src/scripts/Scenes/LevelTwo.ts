@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Phaser from 'phaser';
 
 export default class LevelTwo extends Phaser.Scene {
@@ -12,9 +13,9 @@ export default class LevelTwo extends Phaser.Scene {
 
   preload() {
     this.load.image('LevelCato', new URL('../../assets/LevelCat.png', import.meta.url).href);
-    this.load.image('Level2o', new URL('../../assets/Level2o.png', import.meta.url).href);
-    this.load.image('RightA', new URL('../../assets/RightA.png', import.meta.url).href);
-    this.load.image('LeftA', new URL('../../assets/LeftA.png', import.meta.url).href);
+    this.load.image('Level2o', new URL('../../assets/levels/Level2o.png', import.meta.url).href);
+    this.load.image('RightA', new URL('../../assets/buttons/RightA.png', import.meta.url).href);
+    this.load.image('LeftA', new URL('../../assets/buttons/LeftA.png', import.meta.url).href);
   }
 
   create() {
