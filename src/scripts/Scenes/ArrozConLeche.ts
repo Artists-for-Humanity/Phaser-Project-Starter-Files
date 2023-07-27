@@ -1,33 +1,30 @@
 import Phaser from "phaser";
-// import Stove from './Stove';
-// const s = new Stove();
-// console.log(s.getStoveArr());
 export default class ArrozConLeche extends Phaser.Scene {
-  public homeButton: any;
-  public recipeBar: any;
-  public rBarC: any;
-  public rDownArrow: any;
-  public rUpArrow: any;
-  public recipe: any;
-  public instructions: any;
-  public iUpArrow: any;
-  public iDownArrow: any;
-  public ingredientsBar: any;
-  public iBarC: any;
-  public rice: any;
-  public water: any;
-  public cinnamon: any;
-  public condensedMilk: any;
-  public recipeIndex: number;
-  public equipmentBar: any;
-  public eBarC: any;
-  public pot: any;
-  public bowl: any;
-  public woodenSpoon: any;
-  public cuttingBoard: any;
-  public eUpArrow: any;
-  public eDownArrow: any;
-  //stove
+  homeButton: any;
+  recipeBar: any;
+  rBarC: any;
+  rDownArrow: any;
+  rUpArrow: any;
+  recipe: any;
+  instructions: any;
+  iUpArrow: any;
+  iDownArrow: any;
+  ingredientsBar: any;
+  iBarC: any;
+  rice: any;
+  water: any;
+  cinnamon: any;
+  condensedMilk: any;
+  recipeIndex: number;
+  equipmentBar: any;
+  eBarC: any;
+  pot: any;
+  // p: any;
+  bowl: any;
+  woodenSpoon: any;
+  cuttingBoard: any;
+  eUpArrow: any;
+  eDownArrow: any;
   stoveArr: any;
   knobArr: any;
   count: number;
@@ -58,6 +55,7 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.equipmentBar;
     this.eBarC;
     this.pot;
+    // this.p;
     this.bowl;
     this.woodenSpoon;
     this.cuttingBoard;
@@ -353,26 +351,31 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.eUpArrow.setVisible(true);
       this.eUpArrow.setInteractive();
       //pot interact
-      this.pot.once("pointerdown", (pointer) => {
-        // eslint-disable-next-line prefer-const
-        let p = this.physics.add.image(pointer.x, pointer.y, "Pot");
-        // console.log(this.stoveArr);
-        // this.physics.add.overlap(
-        //   p,
-        //   test,
-        //   this.onColl(),
-        //   undefined,
-        //   this
-        // );s
-        // p.add.collider(p, Stove.stoveArr[0],()=>{console.log('you suck');}, null, this);
-        p.setInteractive();
-        p.on("pointerdown", () => {
-          p.on("pointermove", (pointer) => {
-            p.x = pointer.x;
-            p.y = pointer.y;
+      let p = this.physics.add.group({
+        key: "Pot",
+        repeat: 0,
+        // setXY: {
+        //    x: pointer.x,
+        //    y: pointer.y,
+        //    stepX: 100
+        //   }
+      });
+      p.getChildren()[0].setVisible(false);
+      this.pot.on("pointerdown", (pointer) => {
+        p.create(pointer.x, pointer.y, "Pot");
+        p.getChildren().forEach((Pot) => {
+          this.physics.add.overlap(Pot, this.stoveArr, () => {
+            this.onColl();
           });
-          p.on("pointerup", () => {
-            p.off("pointermove");
+          Pot.setInteractive();
+          Pot.on("pointerdown", () => {
+            Pot.on("pointermove", (pointer) => {
+              Pot.x = pointer.x;
+              Pot.y = pointer.y;
+            });
+            Pot.on("pointerup", () => {
+              Pot.off("pointermove");
+            });
           });
         });
         //for now its a little wonky until later
@@ -419,36 +422,27 @@ export default class ArrozConLeche extends Phaser.Scene {
       }
     }
     //represents the four burners
-    this.stoveArr = ["", "", "", ""];
+    this.stoveArr = this.physics.add.group({
+      key: "burner",
+      repeat: 3,
+    });
     for (let i = 0; i < 4; i++) {
       switch (i) {
         case 0:
-          this.stoveArr[i] = {
-            burner: this.add.sprite(140, 625, "burner"),
-            contains: "",
-            isOn: false,
-          };
+          this.stoveArr.getChildren()[i].x = 140;
+          this.stoveArr.getChildren()[i].y = 625;
           break;
         case 1:
-          this.stoveArr[i] = {
-            burner: this.add.sprite(140, 525, "burner"),
-            contains: "",
-            isOn: false,
-          };
+          this.stoveArr.getChildren()[i].x = 140;
+          this.stoveArr.getChildren()[i].y = 525;
           break;
         case 2:
-          this.stoveArr[i] = {
-            burner: this.add.sprite(260, 525, "burner"),
-            contains: "",
-            isOn: false,
-          };
+          this.stoveArr.getChildren()[i].x = 260;
+          this.stoveArr.getChildren()[i].y = 525;
           break;
         case 3:
-          this.stoveArr[i] = {
-            burner: this.add.sprite(260, 625, "burner"),
-            contains: "",
-            isOn: false,
-          };
+          this.stoveArr.getChildren()[i].x = 260;
+          this.stoveArr.getChildren()[i].y = 625;
           break;
       }
     }
@@ -477,14 +471,14 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.count++;
     switch (this.count) {
       case 0:
-        this.stoveArr[i].burner.setTexture("burner");
-        this.stoveArr[i].isOn = false;
+        this.stoveArr.getChildren()[i].burner.setTexture("burner");
+        this.stoveArr.getChildren()[i].isOn = false;
         this.knobArr[i].setTexture("knob");
         break;
       case 1:
         this.knobArr[i].setTexture("knobLow");
-        this.stoveArr[i].burner.setTexture("burnerOn");
-        this.stoveArr[i].isOn = true;
+        this.stoveArr.getChildren()[i].burner.setTexture("burnerOn");
+        this.stoveArr.getChildren()[i].isOn = true;
         break;
       case 2:
         this.knobArr[i].setTexture("knobMed");
@@ -496,7 +490,7 @@ export default class ArrozConLeche extends Phaser.Scene {
     }
   }
   onColl() {
-    console.log("LDIFBLBIHG");
+    console.log("AAAAAAA");
   }
   update() {
     if (this.rBarC.visible === true) {
