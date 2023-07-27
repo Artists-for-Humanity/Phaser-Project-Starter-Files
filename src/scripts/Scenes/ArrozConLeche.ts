@@ -30,7 +30,7 @@ export default class ArrozConLeche extends Phaser.Scene {
   knobArr: any;
   count: number;
   constructor() {
-    console.log("bruh");
+    console.log("constructor ACL start");
     super({
       key: "ArrozConLeche",
     });
@@ -67,6 +67,7 @@ export default class ArrozConLeche extends Phaser.Scene {
     this.stoveArr;
     this.knobArr;
     this.count = -1;
+    console.log("constructor ACl end");
   }
   preload() {
     console.log("preload ACL start");
@@ -349,21 +350,7 @@ export default class ArrozConLeche extends Phaser.Scene {
       });
       this.water.on("pointerdown", (pointer) => {
         this.w.create(pointer.x, pointer.y, "Water");
-        this.w.getChildren().forEach((Water) => {
-          this.physics.add.overlap(Water, this.p, () => {
-            //put something here
-          });
-          Water.setInteractive();
-          Water.on("pointerdown", () => {
-            Water.on("pointermove", (pointer) => {
-              Water.x = pointer.x;
-              Water.y = pointer.y;
-            });
-            Water.on("pointerup", () => {
-              Water.off("pointermove");
-            });
-          });
-        });
+        this.clickNDrag(this.w);
         //for now its a little wonky until later
       });
     } else {
@@ -376,6 +363,20 @@ export default class ArrozConLeche extends Phaser.Scene {
       this.iUpArrow.setVisible(false);
       this.iDownArrow.setVisible(false);
     }
+  }
+  clickNDrag(childs) {
+    childs.getChildren().forEach((c) => {
+      c.setInteractive();
+      c.on("pointerdown", () => {
+        c.on("pointermove", (pointer) => {
+          c.x = pointer.x;
+          c.y = pointer.y;
+        });
+        c.on("pointerup", () => {
+          c.off("pointermove");
+        });
+      });
+    });
   }
   toggleEquip() {
     if (this.equipmentBar.texture.key === "EquipmentBar") {
@@ -399,16 +400,10 @@ export default class ArrozConLeche extends Phaser.Scene {
           this.physics.add.overlap(Pot, this.stoveArr, () => {
             this.onColl();
           });
-          Pot.setInteractive();
-          Pot.on("pointerdown", () => {
-            Pot.on("pointermove", (pointer) => {
-              Pot.x = pointer.x;
-              Pot.y = pointer.y;
-            });
-            Pot.on("pointerup", () => {
-              Pot.off("pointermove");
-            });
+          this.physics.add.overlap(Pot, this.w, () => {
+            this.putIn(Pot, "water");
           });
+          this.clickNDrag(this.p);
         });
         //for now its a little wonky until later
       });
@@ -479,17 +474,22 @@ export default class ArrozConLeche extends Phaser.Scene {
       }
     }
   }
+  putIn(o1, stuff) {
+    o1.contains = stuff;
+    // this.p.getChildren(3)[0].contains = "water";
+  }
   toggleBurner(i) {
     this.count++;
     switch (this.count) {
       case 0:
-        this.stoveArr.getChildren()[i].burner.setTexture("burner");
+        this.stoveArr.getChildren()[i].setTexture("burner");
         this.stoveArr.getChildren()[i].isOn = false;
         this.knobArr[i].setTexture("knob");
+        console.log(this.p.getChildren()[0].contains);
         break;
       case 1:
         this.knobArr[i].setTexture("knobLow");
-        this.stoveArr.getChildren()[i].burner.setTexture("burnerOn");
+        this.stoveArr.getChildren()[i].setTexture("burnerOn");
         this.stoveArr.getChildren()[i].isOn = true;
         break;
       case 2:
